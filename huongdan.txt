@@ -1,0 +1,8 @@
+python manage.py runserver
+django-admin startapp app
+python manage.py makemigrations
+python manage.py createsuperuser
+django-admin startproject tên_project
+django-admin startapp tên_project
+python manage.py migrate
+venv\Scripts\activate.bat

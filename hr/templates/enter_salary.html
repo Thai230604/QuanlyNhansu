@@ -1,0 +1,70 @@
+{% extends 'home.html' %}
+
+{% block title %}Nhập Lương Cho Nhân Viên{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Nhập Lương Cho {{ nhan_vien.ho_ten }}</h2>
+    {% if messages %}
+    <div class="alert alert-danger mt-3">
+        {% for message in messages %}
+            <div class="alert {% if message.tags %}alert-{{ message.tags }}{% else %}alert-info{% endif %}" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    <form method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="luong_co_ban" class="form-label">Lương Cơ Bản</label>
+            <input type="number" step="0.01" class="form-control" id="luong_co_ban" name="luong_co_ban" required>
+        </div>
+        <div class="mb-3">
+            <label for="hesoluong">Hệ số lương:</label>
+            <input type="number" step="0.01" class="form-control" id="hesoluong" name="hesoluong" value="1" required>
+        </div>
+        <div class="mb-3">
+            <label for="phu_cap" class="form-label">Phụ Cấp</label>
+            <input type="number" step="0.01" class="form-control" id="phu_cap" name="phu_cap" value="0">
+        </div>
+        <div class="mb-3">
+            <label for="thuong" class="form-label">Thưởng</label>
+            <input type="number" step="0.01" class="form-control" id="thuong" name="thuong" value="0">
+        </div>
+        <div class="mb-3">
+            <label for="khau_tru" class="form-label">Khấu Trừ</label>
+            <input type="number" step="0.01" class="form-control" id="khau_tru" name="khau_tru" value="0">
+        </div>
+        <div class="mb-3">
+            <label for="bao_hiem_xa_hoi" class="form-label">Bảo Hiểm Xã Hội</label>
+            <input type="number" step="0.01" class="form-control" id="bao_hiem_xa_hoi" name="bao_hiem_xa_hoi" value="0">
+        </div>
+        <div class="mb-3">
+            <label for="bao_hiem_y_te" class="form-label">Bảo Hiểm Y Tế</label>
+            <input type="number" step="0.01" class="form-control" id="bao_hiem_y_te" name="bao_hiem_y_te" value="0">
+        </div>
+        <div class="mb-3">
+            <label for="bao_hiem_that_nghiep" class="form-label">Bảo Hiểm Thất Nghiệp</label>
+            <input type="number" step="0.01" class="form-control" id="bao_hiem_that_nghiep" name="bao_hiem_that_nghiep" value="0">
+        </div>
+        <div class="mb-3">
+            <label for="thue_thu_nhap_ca_nhan" class="form-label">Thuế Thu Nhập Cá Nhân</label>
+            <input type="number" step="0.01" class="form-control" id="thue_thu_nhap_ca_nhan" name="thue_thu_nhap_ca_nhan" value="0">
+        </div>
+        <div class="mb-3">
+            <label for="tien_tang_ca" class="form-label">Tiền Tăng Ca</label>
+            <input type="number" step="0.01" class="form-control" id="tien_tang_ca" name="tien_tang_ca" value="0">
+        </div>
+        <div class="mb-3">
+            <label for="ngay_tra_luong" class="form-label">Ngày Trả Lương</label>
+            <input type="date" class="form-control" id="ngay_tra_luong" name="ngay_tra_luong" required>
+        </div>
+        <div class="mb-3">
+            <label for="ghi_chu" class="form-label">Ghi Chú</label>
+            <textarea class="form-control" id="ghi_chu" name="ghi_chu"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Lưu</button>
+    </form>
+</div>
+{% endblock %}

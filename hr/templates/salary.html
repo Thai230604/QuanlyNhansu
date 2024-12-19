@@ -1,0 +1,50 @@
+{% extends 'home.html' %}
+
+{% block title %}Quản Lý Lương Nhân Viên{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Danh Sách Nhân Viên</h2>
+
+    <!-- Form Tìm Kiếm -->
+    <form method="GET" action="{% url 'salary' %}" class="mb-4">
+        <div class="input-group">
+            <input type="text" name="ma_nhan_vien" class="form-control" placeholder="Nhập mã nhân viên" required>
+            <button class="btn btn-primary" type="submit">Tìm Kiếm</button>
+            <a href="{% url 'salary' %}" class="btn btn-secondary ml-2">Hiển Thị Tất Cả</a>
+        </div>
+    </form>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Mã Nhân Viên</th>
+                <th>Tên Nhân Viên</th>
+                <th>Hành Động</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for employee in employees %}
+            <tr>
+                <td>{{ employee.ma_nhan_vien }}</td>
+                <td>{{ employee.ho_ten }}</td>
+                <td>
+                    <a href="{% url 'enter_salary' employee.ma_nhan_vien %}" class="btn btn-info btn-sm">Nhập Lương</a>
+                    <a href="{% url 'view_salary' employee.ma_nhan_vien %}" class="btn btn-primary btn-sm">Xem Bảng Lương</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3">Chưa có nhân viên nào.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Nút Xuất Excel -->
+    <form method="GET" action="{% url 'export_excel' %}" class="d-inline">
+        <input type="hidden" name="ma_nhan_vien" value="{{ request.GET.ma_nhan_vien }}">
+        <button type="submit" class="btn btn-success">Xuất Excel</button>
+    </form>
+</div>
+{% endblock %}

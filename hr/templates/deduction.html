@@ -1,0 +1,54 @@
+{% extends "home.html" %}
+
+{% block content %}
+<h2>Quản Lý Phòng Ban</h2>
+
+<!-- Form thêm phòng ban -->
+<form method="POST" action="{% url 'deduction' %}" class="mb-4">
+    {% csrf_token %}
+    <div class="row g-2">
+        <div class="col-md-3">
+            <input type="text" name="ma_phong_ban" class="form-control" placeholder="Mã Phòng Ban" required>
+        </div>
+        <div class="col-md-3">
+            <input type="text" name="ten_phong_ban" class="form-control" placeholder="Tên Phòng Ban" required>
+        </div>
+        <div class="col-md-3">
+            <input type="text" name="dia_chi" class="form-control" placeholder="Địa Chỉ" required>
+        </div>
+        <div class="col-md-2">
+            <input type="text" name="sdt_phong_ban" class="form-control" placeholder="Số Điện Thoại" required>
+        </div>
+        <div class="col-md-1">
+            <button type="submit" class="btn btn-primary w-100">Thêm</button>
+        </div>
+    </div>
+</form>
+
+<!-- Bảng danh sách phòng ban -->
+<table class="table table-bordered table-hover">
+    <thead class="table-light">
+        <tr>
+            <th>Mã Phòng Ban</th>
+            <th>Tên Phòng Ban</th>
+            <th>Địa Chỉ</th>
+            <th>Số Điện Thoại</th>
+            <th>Chức Năng</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for phong_ban in phong_ban_list %}
+        <tr>
+            <td>{{ phong_ban.ma_phong_ban }}</td>
+            <td>{{ phong_ban.ten_phong_ban }}</td>
+            <td>{{ phong_ban.dia_chi }}</td>
+            <td>{{ phong_ban.sdt_phong_ban }}</td>
+            <td>
+                <a href="{% url 'edit_phong_ban' phong_ban.ma_phong_ban %}" class="btn btn-warning btn-sm me-2">Sửa</a>
+                <a href="{% url 'delete_phong_ban' phong_ban.ma_phong_ban %}" class="btn btn-danger btn-sm">Xóa</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

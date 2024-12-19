@@ -1,0 +1,20 @@
+<!-- edit_phong_ban.html -->
+{% extends "home.html" %}
+
+{% block content %}
+<h2>Chỉnh Sửa Phòng Ban</h2>
+<form method="POST">
+    {% csrf_token %}
+    <label>Mã Phòng Ban: {{ phong_ban.ma_phong_ban }}</label><br>
+    <label for="ten_phong_ban">Tên Phòng Ban:</label>
+    <input type="text" name="ten_phong_ban" value="{{ phong_ban.ten_phong_ban }}" required><br>
+    
+    <label for="dia_chi">Địa Chỉ:</label>
+    <input type="text" name="dia_chi" value="{{ phong_ban.dia_chi }}" required><br>
+    
+    <label for="sdt_phong_ban">Số Điện Thoại:</label>
+    <input type="text" name="sdt_phong_ban" value="{{ phong_ban.sdt_phong_ban }}" required><br>
+
+    <button type="submit">Lưu Thay Đổi</button>
+</form>
+{% endblock %}

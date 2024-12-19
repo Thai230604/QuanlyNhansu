@@ -1,0 +1,16 @@
+{% extends 'home.html' %}
+
+{% block title %}Sửa Nhân Viên{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Sửa Thông Tin Nhân Viên: {{ nhan_vien.ho_ten }}</h2>
+    
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Cập Nhật</button>
+        <a href="{% url 'employee' %}" class="btn btn-secondary">Hủy</a>
+    </form>
+</div>
+{% endblock %}

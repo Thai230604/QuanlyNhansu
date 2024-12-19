@@ -1,0 +1,44 @@
+{% extends 'home.html' %}
+
+{% block title %}Bảng Lương Nhân Viên{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Bảng Lương Của {{ nhan_vien.ho_ten }}</h2>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Ngày Trả Lương</th>
+                <th>Lương Cơ Bản</th>
+                <th>Hệ số lương</th>
+                <th>Phụ Cấp</th>
+                <th>Thưởng</th>
+                <th>Khấu Trừ</th>
+                <th>Tiền Tăng Ca</th>
+                <th>Lương Thực Nhận</th>
+                <th>Ghi Chú</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for luong in luong_list %}
+            <tr>
+                <td>{{ luong.ngay_tra_luong }}</td>
+                <td>{{ luong.luong_co_ban }}</td>
+                <td>{{ luong.hesoluong }}</td>
+                <td>{{ luong.phu_cap }}</td>
+                <td>{{ luong.thuong }}</td>
+                <td>{{ luong.khau_tru }}</td>
+                <td>{{ luong.tien_tang_ca }}</td>
+                <td>{{ luong.luong_thuc_nhan }}</td>
+                <td>{{ luong.ghi_chu }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="8">Chưa có dữ liệu lương.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

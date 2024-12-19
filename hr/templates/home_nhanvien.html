@@ -1,0 +1,70 @@
+<!-- hr/templates/home_nhanvien.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Nhân Viên</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Chào mừng Nhân Viên!</h1>
+        <p>Đây là trang nhân viên của hệ thống.</p>
+
+        <!-- Hiển thị thông tin nhân viên -->
+        <h3>Thông tin của bạn</h3>
+        <ul class="list-group">
+            <li class="list-group-item">Họ tên: {{ user.ho_ten }}</li>
+            <li class="list-group-item">Ngày sinh: {{ user.ngay_sinh }}</li>
+            <li class="list-group-item">Quê quán: {{ user.que_quan }}</li>
+            <li class="list-group-item">Giới tính: {{ user.get_gioi_tinh_display }}</li>
+            <li class="list-group-item">Dân tộc: {{ user.dan_toc }}</li>
+            <li class="list-group-item">Số điện thoại: {{ user.sdt_nhan_vien }}</li>
+            <li class="list-group-item">Chức vụ: {{ user.ma_chuc_vu_nv.ten_chuc_vu }}</li>
+            <li class="list-group-item">Phòng ban: {{ user.ma_phong_ban.ten_phong_ban }}</li>
+            <li class="list-group-item">Hợp đồng: {{ user.ma_hop_dong.loai_hop_dong }}</li>
+            <li class="list-group-item">Chuyên ngành: {{ user.ma_chuyen_nganh.ten_chuyen_nganh }}</li>
+            <li class="list-group-item">Trình độ học vấn: {{ user.ma_trinh_do_hoc_van.ten_trinh_do }}</li>
+        </ul>
+
+        <!-- Biểu mẫu cập nhật thông tin -->
+        <h3>Cập nhật thông tin của bạn</h3>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="ho_ten">Họ tên</label>
+                <input type="text" class="form-control" name="ho_ten" value="{{ user.ho_ten }}" required>
+            </div>
+            <div class="form-group">
+                <label for="ngay_sinh">Ngày sinh</label>
+                <input type="date" class="form-control" name="ngay_sinh" value="{{ user.ngay_sinh }}" required>
+            </div>
+            <div class="form-group">
+                <label for="que_quan">Quê quán</label>
+                <input type="text" class="form-control" name="que_quan" value="{{ user.que_quan }}" required>
+            </div>
+            <div class="form-group">
+                <label for="sdt_nhan_vien">Số điện thoại</label>
+                <input type="text" class="form-control" name="sdt_nhan_vien" value="{{ user.sdt_nhan_vien }}" required>
+            </div>
+            <div class="form-group">
+                <label for="mat_khau">Mật khẩu mới</label>
+                <input type="password" class="form-control" name="mat_khau">
+                <small class="form-text text-muted">Để trống nếu không muốn thay đổi mật khẩu.</small>
+            </div>
+            <button type="submit" class="btn btn-primary">Xong</button>
+        </form>
+        <!-- Nút Xem Bảng Lương -->
+        <a href="{% url 'view_salary_nhanvien' user.ma_nhan_vien %}" class="btn btn-info mt-3">Xem Bảng Lương</a>
+
+        <a href="{% url 'login' %}" class="btn btn-danger mt-3">Đăng Xuất</a>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{% static 'validation.js' %}"></script>
+</body>
+</html>

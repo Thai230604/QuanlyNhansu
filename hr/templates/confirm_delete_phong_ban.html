@@ -1,0 +1,13 @@
+<!-- confirm_delete_phong_ban.html -->
+{% extends "home.html" %}
+
+{% block content %}
+<h2>Xóa Phòng Ban</h2>
+<p>Bạn có chắc chắn muốn xóa phòng ban "{{ phong_ban.ten_phong_ban }}" không?</p>
+
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Xóa</button>
+    <a href="{% url 'deduction' %}" class="btn btn-secondary">Hủy</a>
+</form>
+{% endblock %}

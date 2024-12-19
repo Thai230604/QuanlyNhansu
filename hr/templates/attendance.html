@@ -1,0 +1,91 @@
+{% extends 'home.html' %}
+
+{% block title %}Chấm Công{% endblock %}
+
+{% block content %}
+<h1>Trang Chấm Công</h1>
+
+<!-- Form tìm kiếm theo ngày -->
+<form method="GET" class="mb-3">
+    <div class="input-group">
+        <input type="date" name="search_date" class="form-control" value="{{ search_date }}" required>
+        <button type="submit" class="btn btn-primary">Tìm Kiếm</button>
+        <a href="{% url 'attendance' %}" class="btn btn-secondary">Hiển Thị Tất Cả</a>
+
+    </div>
+</form>
+
+<!-- Bảng hiển thị dữ liệu chấm công đã có -->
+<div id="attendance-table" style="display: {% if cham_cong %}block{% else %}none{% endif %}; overflow-y: auto; max-height: 300px;">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Mã Nhân Viên</th>
+                <th>Ngày Chấm Công</th>
+                <th>Giờ Vào</th>
+                <th>Giờ Ra</th>
+                <th>Ghi Chú</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cham in cham_cong %}
+            <tr>
+                <td>{{ cham.nhan_vien.ma_nhan_vien }}</td>
+                <td>{{ cham.ngay_cham_cong }}</td>
+                <td>{{ cham.gio_vao }}</td>
+                <td>{{ cham.gio_ra }}</td>
+                <td>{{ cham.ghi_chu }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5">Không có dữ liệu chấm công cho ngày này.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Form nhập mới thông tin chấm công -->
+<h3>Nhập Thông Tin Chấm Công Mới</h3>
+<form method="POST">
+    {% csrf_token %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nhân Viên</th>
+                <th>Ngày Chấm Công</th>
+                <th>Giờ Vào</th>
+                <th>Giờ Ra</th>
+                <th>Ghi Chú</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for nhan_vien in employees %}
+            <tr>
+                <td>{{ nhan_vien.ho_ten }}</td>
+                <td>
+                    <input type="date" name="ngay_cham_cong_{{ nhan_vien.ma_nhan_vien }}" value="{{ search_date }}" required>
+                </td>
+                <td>
+                    <input type="time" name="gio_vao_{{ nhan_vien.ma_nhan_vien }}" value="07:00">
+                </td>
+                <td>
+                    <input type="time" name="gio_ra_{{ nhan_vien.ma_nhan_vien }}" value="17:00">
+                </td>
+                <td>
+                    <input type="text" name="ghi_chu_{{ nhan_vien.ma_nhan_vien }}">
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <button type="submit" class="btn btn-primary">Lưu Thông Tin Chấm Công</button>
+</form>
+{% if messages %}
+    <div>
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    </div>
+{% endif %}
+{% endblock %}

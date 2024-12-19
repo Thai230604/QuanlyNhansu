@@ -1,0 +1,60 @@
+{% extends 'home.html' %}
+
+{% block title %}Danh Sách Nhân Viên{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Danh Sách Nhân Viên</h2>
+    
+    <!-- Thanh nhập liệu tìm kiếm và nút thêm nhân viên -->
+    <div class="mb-3 d-flex justify-content-between align-items-center">
+        <form method="GET" action="{% url 'employee' %}" class="flex-grow-1">
+            <div class="input-group">
+                <input type="text" name="ma_nhan_vien" class="form-control" placeholder="Nhập mã nhân viên..." aria-label="Nhập mã nhân viên">
+                <button class="btn btn-primary" type="submit">Tìm Kiếm</button>
+            </div>
+        </form>
+        
+        <div class="ms-3">
+            <a href="{% url 'add_nhanvien' %}" class="btn btn-success">Thêm Nhân Viên</a>
+            <a href="{% url 'employee' %}" class="btn btn-info">Xuất Danh Sách Nhân Viên</a>
+        </div>
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Mã Nhân Viên</th>
+                <th>Tên Nhân Viên</th>
+                <th>Ngày Sinh</th>
+                <th>Giới Tính</th>
+                <th>Trình Độ Học Vấn</th>
+                <th>Hành Động</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if employees %}
+                {% for employee in employees %}
+                <tr>
+                    <td>{{ employee.ma_nhan_vien }}</td>
+                    <td>{{ employee.ho_ten }}</td>
+                    <td>{{ employee.ngay_sinh }}</td>
+                    <td>{{ employee.get_gioi_tinh_display }}</td>
+                    <td>{{ employee.ma_trinh_do_hoc_van.ten_trinh_do }}</td>
+                    <td>
+                        <a href="{% url 'edit_nhanvien' employee.ma_nhan_vien %}" class="btn btn-warning btn-sm">Sửa</a>
+                        <a href="{% url 'delete_nhanvien' employee.ma_nhan_vien %}" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc chắn muốn xóa nhân viên này?');">Xóa</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="6" class="text-center">Không tìm thấy nhân viên nào.</td>
+                </tr>
+            {% endif %}
+        </tbody>
+        
+    </table>
+    <a href="{% url 'export_employees' %}" class="btn btn-secondary">Xuất Excel</a> <!-- Nút xuất Excel -->
+</div>
+{% endblock %}

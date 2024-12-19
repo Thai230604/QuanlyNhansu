@@ -1,0 +1,10 @@
+{% extends 'home.html' %}
+
+{% block title %}Biểu Đồ Lương Nhân Viên{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Biểu Đồ Tổng Số Lương Của Nhân Viên</h2>
+    <img src="{% url 'salary_chart' %}" alt="Biểu Đồ Lương" class="img-fluid">
+</div>
+{% endblock %}

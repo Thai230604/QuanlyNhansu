@@ -1,0 +1,15 @@
+{% extends 'home.html' %}
+
+{% block title %}Xác Nhận Xóa Nhân Viên{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Xác Nhận Xóa Nhân Viên: {{ nhan_vien.ho_ten }}</h2>
+    <p>Bạn có chắc chắn muốn xóa nhân viên này không?</p>
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Xóa</button>
+        <a href="{% url 'employee' %}" class="btn btn-secondary">Hủy</a>
+    </form>
+</div>
+{% endblock %}

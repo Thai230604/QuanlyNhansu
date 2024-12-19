@@ -1,0 +1,56 @@
+<!-- hr/templates/login.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Nhân Viên</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+</head>
+<body>
+    <div class="container mt-4">
+        <h2>Bảng Lương Của {{ nhan_vien.ho_ten }}</h2>
+    
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Ngày Trả Lương</th>
+                    <th>Lương Cơ Bản</th>
+                    <th>Hệ số lương</th>
+                    <th>Phụ Cấp</th>
+                    <th>Thưởng</th>
+                    <th>Khấu Trừ</th>
+                    <th>Tiền Tăng Ca</th>
+                    <th>Lương Thực Nhận</th>
+                    <th>Ghi Chú</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for luong in luong_list %}
+                <tr>
+                    <td>{{ luong.ngay_tra_luong }}</td>
+                    <td>{{ luong.luong_co_ban }}</td>
+                    <td>{{ luong.hesoluong }}</td>
+                    <td>{{ luong.phu_cap }}</td>
+                    <td>{{ luong.thuong }}</td>
+                    <td>{{ luong.khau_tru }}</td>
+                    <td>{{ luong.tien_tang_ca }}</td>
+                    <td>{{ luong.luong_thuc_nhan }}</td>
+                    <td>{{ luong.ghi_chu }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="8">Chưa có dữ liệu lương.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <!-- Bootstrap JS và các phụ thuộc -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

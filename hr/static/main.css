@@ -1,0 +1,145 @@
+/* hr/static/main.css */
+
+body {
+    background-image: url('/static/hr/background.jpg'); /* Đảm bảo bạn có hình ảnh này trong thư mục static/hr/ */
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.8); /* Nền trắng hơi trong suốt */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card {
+    border: none;
+    border-radius: 10px;
+}
+
+h2, h1 {
+    color: #333;
+}
+
+.form-control {
+    border-radius: 5px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border: none;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+body {
+    background-color: #f8f9fa; /* Màu nền nhẹ nhàng */
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    background-color: #ffffff; /* Nền trắng cho container */
+    border-radius: 8px; /* Bo góc cho container */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ cho container */
+    padding: 20px; /* Thêm khoảng cách bên trong */
+}
+
+h1 {
+    color: #007bff; /* Màu xanh cho tiêu đề chính */
+}
+
+h3 {
+    margin-top: 20px; /* Thêm khoảng cách trên tiêu đề phụ */
+    color: #343a40; /* Màu chữ tối cho tiêu đề phụ */
+}
+
+.list-group-item {
+    background-color: #f1f1f1; /* Màu nền cho các mục trong danh sách */
+    border: none; /* Bỏ viền cho mục danh sách */
+    border-radius: 5px; /* Bo góc cho mục danh sách */
+}
+
+.form-control {
+    border: 1px solid #ced4da; /* Viền nhẹ cho input */
+    border-radius: 4px; /* Bo góc cho input */
+}
+
+.btn-primary {
+    background-color: #007bff; /* Màu nền cho nút cập nhật */
+    border: none; /* Bỏ viền cho nút */
+}
+
+.btn-danger {
+    background-color: #dc3545; /* Màu nền cho nút đăng xuất */
+    border: none; /* Bỏ viền cho nút */
+}
+
+.btn:hover {
+    opacity: 0.9; /* Hiệu ứng hover cho nút */
+}
+
+.form-text {
+    margin-top: 10px; /* Thêm khoảng cách cho hướng dẫn dưới input */
+}
+
+.img-thumbnail {
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    padding: .25rem;
+    background-color: #fff;
+}
+
+.alert {
+    font-size: 1.2em; /* Kích thước chữ */
+    margin-bottom: 1rem; /* Khoảng cách dưới thông báo */
+}
+
+.alert-success {
+    background-color: #d4edda; /* Màu nền xanh nhạt */
+    color: #155724; /* Màu chữ xanh đậm */
+}
+
+.alert-danger {
+    background-color: #f8d7da; /* Màu nền đỏ nhạt */
+    color: #721c24; /* Màu chữ đỏ đậm */
+}
+
+.alert-warning {
+    background-color: #fff3cd; /* Màu nền vàng nhạt */
+    color: #856404; /* Màu chữ vàng đậm */
+}
+
+.alert-info {
+    background-color: #d1ecf1; /* Màu nền xanh nhạt */
+    color: #0c5460; /* Màu chữ xanh đậm */
+}
+.messages .alert {
+    margin: 10px 0;
+    padding: 15px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+
+
+
